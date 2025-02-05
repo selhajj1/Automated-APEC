@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Automated APEC-script: it does the nth-MD-calculation in an iterated way: Step_1 --> Step_5"
-echo "APEC 3.0: written by Sarah Elhajj"
+echo "APEC 2.0: written by Sarah Elhajj"
 echo "Latest changes: July 2024"
 module load vmd
 # Current working directory
