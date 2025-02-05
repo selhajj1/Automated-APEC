@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Automated APEC-script: it does the first-QMMM-calculation of Step_0"
-echo "APEC 3.0: written by Sarah Elhajj"
+echo "APEC 2.0: written by Sarah Elhajj"
 echo "Latest changes: July 2024"
 
 module load vmd

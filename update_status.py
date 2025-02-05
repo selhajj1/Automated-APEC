@@ -1,3 +1,4 @@
+#Written by Sarah Elhajj -Gozem Lab
 import sys
 import sqlite3
 import os

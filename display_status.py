@@ -1,3 +1,4 @@
+#Written by Sarah Elhajj - Gozem Lab
 from termcolor import colored
 
 import sqlite3
