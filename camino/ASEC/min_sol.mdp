@@ -1,0 +1,58 @@
+;http://ringo.ams.sunysb.edu/index.php/Ubq_min.mdp
+; Modified by Yoelvis
+; Then modified by JDA 22/11/2024
+
+;define                  = -DPOSRES    ; defines to pass to the preprocessor
+
+integrator              = steep        ; steepest descents energy minimization
+nsteps                  = 20000         ; maximum number of steps to integrate
+;
+; Energy minimizing stuff
+;
+emtol                   = 100               ; [kJ/mol/nm] minimization is converged when max force is < emtol
+emstep                  = 0.0001               ; [nm] initial step-size
+
+;
+; Output Control
+;
+nstxout                 = 100           ; [steps] freq to write coordinates to trajectory
+nstvout                 = 100           ; [steps] freq to write velocities to trajectory
+nstfout                 = 100           ; [steps] freq to write forces to trajectory
+nstlog                  = 1              ; [steps] freq to write energies to log file
+nstenergy               = 1             ; [steps] freq to write energies to energy file
+;
+; Neighbor Searching
+;
+cutoff-scheme = Verlet
+nstlist                 = 5            ; [steps] freq to update neighbor list
+ns_type                 = grid        ; method of updating neighbor list
+pbc                     = xyz           ; periodic boundary conditions in all directions
+rlist                   = 0.8           ; [nm] cut-off distance for the short-range neighbor list
+; Electrostatics
+coulombtype             = PME           ; Particle-Mesh Ewald electrostatics
+rcoulomb                = 0.8           ; [nm] distance for Coulomb cut-off
+;
+; VdW
+;
+vdwtype                 = cut-off       ; twin-range cut-off with rlist where rvdw >= rlist
+rvdw                    = 0.8           ; [nm] distance for LJ cut-off
+DispCorr                = EnerPres      ; apply long range dispersion corrections for energy
+;
+; Ewald
+;
+fourierspacing          = 0.12          ; [nm] grid spacing for FFT grid when using PME
+pme_order               = 4             ; interpolation order for PME, 4 = cubic
+ewald_rtol              = 1e-5          ; relative strength of Ewald-shifted potential at rcoulomb
+
+constraints             = h-bonds     ; convert all bonds to constraints
+constraint_algorithm    = LINCS         ; LINear Constraint Solver
+lincs_order             = 4             ; highest order in the expansion of the contraint coupling matrix
+lincs_iter              = 1             ; number of iterations to correct for rotational lengthening
+lincs_warnangle         = 30            ; [degrees] maximum angle that a bond can rotate before LINCS will complain
+
+;
+; Freezing atoms
+;
+;freezegrps = non-Water
+freezegrps = GroupDyna
+freezedim = Y Y Y

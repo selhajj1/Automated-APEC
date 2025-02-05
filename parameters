@@ -1,0 +1,30 @@
+conformer A
+
+project_name q-flvx
+chromo_FF_name CHR
+oxidation_state Quinone 
+pdb_file 1j8q.pdb
+charge_chromophore -2
+
+flavin_model Quinone
+tail FMN
+size_cubicbox null
+box_shape cubic
+edge_dist 2
+conc_NaCl 0
+SOL y
+
+NPT_production_temperature 298
+NPT_heating_phase_time 300
+equilibration_phase 79700
+NPT_production_phase_time 0
+GPU_use y
+
+NVT_production_temperature 298
+NVT_heating_phase 300
+NVT_equilibrationphase1 9700
+NVT_production_phase 10000
+NVT_parallelize_production_phase n
+number_parallelMD 1
+NVT_GPUuse y
+

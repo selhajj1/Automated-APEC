@@ -1,0 +1,50 @@
+* template for b3lyp optimization
+
+> EXPORT MOLCAS_MOLDEN=ON
+
+> COPY $InpDir/$Project.xyz $WorkDir
+> COPY $InpDir/$Project.key $WorkDir
+> COPY $InpDir/amber99sb.prm $WorkDir
+*> COPY $InpDir/$Project.Espf.Data $WorkDir
+
+
+> EXPORT PASOS=1
+
+&Gateway
+ Tinker
+ Group = NoSym
+ Basis = ANO-L-VDZP
+
+>   EXPORT MOLCAS_MAXITER=40
+>   Do   while
+ 
+   &SEWARD
+   &ESPF
+    External = Tinker
+    lamorok
+   &SCF
+   KSDFT=B3LYP
+   UHF
+   charge=0
+   spin=1 
+
+   &ALASKA
+   &SLAPAF
+    cartesian
+    rHidden = 3.0
+
+> COPY $WorkDir/$Project.xyz $InpDir/$Project.Final.xyz
+> COPY $WorkDir/$Project.xyz $InpDir/$Project.Final.xyz_$PASOS
+> COPY $WorkDir/$Project.Espf.Data $InpDir
+
+> EVAL PASOS=$PASOS+1
+
+>   EndDo
+
+* &GRID_IT
+*   SELEct
+*   1:67-98
+* &GRID_IT
+*   FILEORB = $Project.RasOrb; NAME = average
+*   SELEct
+*   1:67-98
