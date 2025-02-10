@@ -427,7 +427,7 @@ cp $templatedir/ASEC/ndx-maker_mod.sh .
 conver=10
 iter=1
 while [[ conver -ne 0 ]]; do
-   $gropath/gmx grompp -f EM_solv_ions.mdp -c ${Project}_box_sol.gro -n ${Project}_box_sol.ndx -p ${Project}_box_sol.top -o ${Project}_box_sol.tpr -maxwarn 1
+   $gropath/gmx grompp -f EM_solv_ions.mdp -c ${Project}_box_sol.gro -n ${Project}_box_sol.ndx -p ${Project}_box_sol.top -o ${Project}_box_sol.tpr -maxwarn 2 
 
    echo ""
    echo " Please wait, minimizing, batch $iter of 1000 steps"
@@ -515,7 +515,7 @@ cp $templatedir/ASEC/ndx-maker_mod.sh .
 conver=10
 iter=1
 while [[ conver -ne 0 ]]; do
-   $gropath/gmx grompp -f standard-EM.mdp -c ${Project}_box_sol.gro -n ${Project}_box_sol.ndx -p ${Project}_box_sol.top -o ${Project}_box_sol.tpr -maxwarn 1
+   $gropath/gmx grompp -f standard-EM.mdp -c ${Project}_box_sol.gro -n ${Project}_box_sol.ndx -p ${Project}_box_sol.top -o ${Project}_box_sol.tpr -maxwarn 2
 
    echo ""
    echo " Please wait, minimizing, batch $iter of 1000 steps"
