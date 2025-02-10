@@ -143,7 +143,7 @@ sed -i 's/C20/CX /' reform.new.pdb
 #
 # At the end of the PDB, all the water from Dowser and chloride ions are added
 #
-echo TER >> reform.new.pdb
+echo "TER    " >> reform.new.pdb
 cat dowserwat_all.pdb >> reform.new.pdb
 cat CL >> reform.new.pdb
 cat NA >> reform.new.pdb
