@@ -20,7 +20,7 @@ echo "step 2 done"
 
 python3 -m pip install virtualenv
 # Step 3: Create a virtual environment in the project directory using virtualenv
-cd APEC-automation || { echo "Failed to change directory"; exit 1; }
+cd Automated-APEC || { echo "Failed to change directory"; exit 1; }
 echo "step 3a done"
 mkdir -p logs/Step_0
 env_name="APEC_$(whoami)_$(date +%s)"

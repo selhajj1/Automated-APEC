@@ -134,7 +134,7 @@ else
 fi
 
 system_total_charge_tolerance=0.005
-system_total_charge_value=$(grep -i "System Total charge:" "$CURRENT_DIR/Step_${step_id}/Dynamic/output/md.log" | awk '{print $4}')
+system_total_charge_value=$(grep -i "System total charge:" "$CURRENT_DIR/Step_${step_id}/Dynamic/output/md.log" | awk '{print $4}')
 check_value_within_tolerance "$system_total_charge_value_1" "$system_total_charge_tolerance" "MD_NVT.sh"
 
 # Update status for MD_ASEC.sh
