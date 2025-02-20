@@ -1,5 +1,9 @@
 templatedir='/userapp/APEC_Spr2023/New_APEC/template'
 
+
+
+
+
 echo "
 
 Is your PDB local or on the PDB Databank Server?
@@ -289,7 +293,10 @@ else
 fi
 
 mv temp.mol2 ${pdbName}_${flavinVariant}${oxid}.mol2 && mv temp.xyz ${pdbName}_${flavinVariant}${oxid}.xyz 
-awk '{$2=FNR}1' ${pdbName}APEC.pdb | column -t > temp && mv temp ${pdbName}APEC.pdb
+#awk '{$2=FNR}1' ${pdbName}APEC.pdb | column -t > temp && mv temp ${pdbName}APEC.pdb
+
+awk '{if ($1 == "ATOM" || $1 == "HETATM" || $1 == "TER") {printf "%-6s%5d%s\n", $1, NR, substr($0, 12)} else {print $0}}' ${pdbName}APEC.pdb > temp && mv temp ${pdbName}APEC.pdb
+
 
 mkdir ${pdbName}_${flavinVariant}${oxid}_APEC_Calculation_Files
 mv ${pdbName}_${flavinVariant}${oxid}.mol2 CHR_chain.xyz ${pdbName}_${flavinVariant}${oxid}.xyz  ${pdbName}APEC.pdb ${pdbName}_${flavinVariant}${oxid}_APEC_Calculation_Files/
@@ -297,7 +304,6 @@ mv ${pdbName}_${flavinVariant}${oxid}.mol2 CHR_chain.xyz ${pdbName}_${flavinVari
 cp $templatedir/New_APEC.sh ${pdbName}_${flavinVariant}${oxid}_APEC_Calculation_Files/
 rm ${pdbName}Clean.pdb &> /dev/null 
 
-#cp /data/PHO_WORK/sajagbe2/QMMM/LOVCalculations/UpdatedScripts/New_APEC.sh ${pdbName}_${flavinVariant}${oxid}_APEC_Calculation_Files/
 
 echo ""
 echo ""
