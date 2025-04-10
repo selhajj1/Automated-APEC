@@ -56,7 +56,7 @@ if [[ -f $folder/$folder.out ]]; then
    echo " *************************************************************"
    echo "                      Warning!"
    echo ""
-   echo " $folder.out already excist. We are goint to use it..."
+   echo " $folder.out already exists. We are goint to use it..."
    echo ""
    echo " *************************************************************"
    echo ""
