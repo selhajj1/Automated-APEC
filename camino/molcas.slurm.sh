@@ -2,7 +2,7 @@
 #SBATCH -J NOMEPROGETTO
 #SBATCH -N 1
 #SBATCH -n 8
-#SBATCH -t hh:00:00
+#SBATCH -t 24:00:00
 #SBATCH --mem=MEMTOTMB 
 #SBATCH -p qCPU120
 #SBATCH -A CHEM9r4
@@ -17,7 +17,7 @@ export MOLCAS_MEM=MEMORIAMB
 export MOLCAS_MOLDEN=ON
 export MOLCAS_PRINT=normal
 export TINKER=/sysapps/ubuntu-applications/openmolcas/22.10/build/tinker-6.3.3/bin
-export WorkDir=/scratch/$USER/$SLURM_JOBID
+export WorkDir=/scratch/users/$USER/$SLURM_JOBID
 export InpDir=$PWD
 export Project=$SLURM_JOB_NAME
 #--------------------------------------------------------------#

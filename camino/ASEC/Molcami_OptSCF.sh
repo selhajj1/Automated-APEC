@@ -49,22 +49,38 @@ rm -f chargefx
 rm -f chargefxx
 touch mm
 touch qm
-if [[ $redox -eq 1 && $fmnfad == "FMN" ]]; then
-   cp $templatedir/ASEC/charges_FMN new_charges
-fi
-if [[ $redox -eq 2 && $fmnfad == "FMN" ]]; then
-   cp $templatedir/ASEC/charges_FMN- new_charges
-fi
-if [[ $redox -eq 3 && $fmnfad == "FMN" ]]; then
-   cp $templatedir/ASEC/charges_FMNH new_charges
-fi
 
-if [[ $redox -eq 4 && $fmnfad == "FMN" ]]; then
-   cp $templatedir/ASEC/charges_FMNH- new_charges
-fi
-if [[ $redox -eq 5 && $fmnfad == "FMN" ]]; then
-   cp $templatedir/ASEC/charges_FMNH2 new_charges
-fi
+
+
+case "$fmnfad" in
+    "FMN")
+        case "$redox" in
+            1) cp $templatedir/ASEC/charges_FMN   new_charges  ;;
+            2) cp $templatedir/ASEC/charges_FMN-  new_charges ;;
+            3) cp $templatedir/ASEC/charges_FMNH  new_charges ;;
+            4) cp $templatedir/ASEC/charges_FMNH- new_charges ;;
+            5) cp $templatedir/ASEC/charges_FMNH2 new_charges ;;
+            *)
+            #    read -p "Type the number representing the redox state of interest: " option
+                ;;
+        esac
+        ;;
+    "FAD")
+        case "$redox" in
+            1) cp $templatedir/ASEC/charges_FAD   new_charges  ;;
+            2) cp $templatedir/ASEC/charges_FAD-  new_charges ;;
+            3) cp $templatedir/ASEC/charges_FADH  new_charges ;;
+            4) cp $templatedir/ASEC/charges_FADH- new_charges ;;
+            5) cp $templatedir/ASEC/charges_FADH2 new_charges ;;
+            *)
+                # read -p "Type the number representing the redox state of interest: " option
+                ;;
+        esac
+        ;;
+    *)
+        echo "Invalid input for fmnfad. Please use FMN or FAD."
+        ;;
+esac
 
 for i in $(eval echo "{1..$chratoms}"); do
    num=`head -n $(($init+1+$i)) $Project-tk.xyz | tail -n1 | awk '{ print $1 }'`
@@ -98,29 +114,29 @@ for i in $(eval echo "{1..$chratoms}"); do
       fx=$(($fx+1))
    fi
 done
-if [[ $xx -gt 0 ]]; then
-   correct=a
-   while [[ $correct != "y" && $correct != "n" ]]; do
-      echo ""
-      echo " *************************************************************************"
-      echo ""
-      echo " When FAD chromophore is computed, like in this case, just the LM atom"
-      echo " will be considered in the QMMM calculations as MM atoms. The rest of the"
-      echo " tail will be considered as ASEC points."
-      echo ""
-      echo " Do you agree? (y/n)"
-      echo ""
-      echo " *************************************************************************"
-      read correct
-   done
-   if [[ $correct == "n" ]]; then
-      echo " "
-      echo " Please redifine the QM, MM, QL, ML, and XX atom types in the initial"
-      echo " chromophore xyz file."
-      echo " Aborting ..."
-      exit 0     
-   fi
-fi
+# if [[ $xx -gt 0 ]]; then
+#    correct=a
+#    while [[ $correct != "y" && $correct != "n" ]]; do
+#       echo ""
+#       echo " *************************************************************************"
+#       echo ""
+#       echo " When FAD chromophore is computed, like in this case, just the LM atom"
+#       echo " will be considered in the QMMM calculations as MM atoms. The rest of the"
+#       echo " tail will be considered as ASEC points."
+#       echo ""
+#     #   echo " Do you agree? (y/n)"
+#       echo ""
+#       echo " *************************************************************************"
+#     #   read correct
+#    done
+#    if [[ $correct == "n" ]]; then
+#       echo " "
+#       echo " Please redifine the QM, MM, QL, ML, and XX atom types in the initial"
+#       echo " chromophore xyz file."
+#       echo " Aborting ..."
+#       exit 0     
+#    fi
+# fi
 
 #
 # The charges of the MM atoms are equal to $carga (that is the meaning of the 0) to ensure 

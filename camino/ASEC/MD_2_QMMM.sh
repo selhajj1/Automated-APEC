@@ -75,7 +75,7 @@ declare -A force
 # NC, C, O, ... correspond to the gromacs atom types, while =1022, =3, ...
 # correspond to the corresponding atom type in TINKER format.
 #########################################################################
-force=(["NC"]=1022 ["C"]=3 ["O"]=5 ["CA"]=115 ["CT"]=2 ["H"]=4 ["HC"]=14 ["Nstar"]=1017 ["H1"]=6 ["OH"]=63 ["HO"]=64 ["OS"]=1239 ["O2"]=1236 ["P"]=1235 ["CK"]=1021 ["NB"]=193 ["CB"]=149 ["N2"]=299 ["CQ"]=1023 ["H5"]=175)
+force=( ["P"]=1235 ["H"]=4 ["HA"]=14 ["HC"]=14 ["H2"]=14 ["H1"]=6 ["HO"]=64 ["H5"]=175 ["O"]=5 ["OH"]=63 ["OS"]=1239 ["O2"]=1236 ["Nstar"]=1017 ["NC"]=1022 ["NA"]=1022 ["NB"]=193 ["N2"]=299 ["CK"]=1021  ["CB"]=149 ["CQ"]=1023 ["CA"]=115 ["CT"]=2 ["CM"]=115 ["C"]=3 )
 
 mkdir conversion/
 if [[ $Step -eq 0 ]]; then

@@ -1,9 +1,9 @@
-Template /data/PHO_WORK/selhajj1/QMMM/quinone-apec-Jan16/camino
+Template /data/PHO_WORK/selhajj1/QMMM/Spr25_QMMM/merged-APEC/camino
 Tinker /sysapps/ubuntu-applications/openmolcas/22.10/build/tinker-6.3.3/bin/
 Version Tk 6.3.3
 Queue SLURM
 Gromacs YES
-GroPath /userapp/APEC_Spr2023/gromacs-2019.3/bin/bin
+GroPath /sysapps/ubuntu-applications/gromacs/ubuntu24/2024.4-cpu-gcc11.2.0/gromacs-2024.4/install/bin
 Dowser YES
 DowPath /userapp/APEC_Spr2023/dowser/bin/dowser
 Modeller NO

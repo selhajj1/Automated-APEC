@@ -24,26 +24,38 @@ ncl=`grep "Added_CLs" ../Infos.dat | awk '{ print $2 }'`
 tempdir=`grep "tempdir" ../Infos.dat | awk '{ print $2 }'`
 redox=`grep "Redox" ../Infos.dat | awk '{ print $2 }'`
 
-module load gromacs/2024.4-cpu #JDA modification (following line, too)
+gromacs/2024.4-cpu-gcc12.4.0 #JDA modification (following line, too)
 gropath=/sysapps/ubuntu-applications/gromacs/2024.4-cpu/gromacs-2024.4/install/bin/ #JDA: Do all with gro24
 
 
 numions=$(($nna+$ncl))
 
-if [  $colabase == "FMN" ]; then
-       if [  $redox = 1 ] ; then
-               cola="FMN"
-       elif [  $redox = 2 ] ; then
-               cola="FMNdot-"
-       elif [  $redox = 3 ] ; then
-               cola="FMNH"
-       elif [  $redox = 4 ] ; then
-               cola="FMNH-"
-       elif [  $redox = 5 ] ; then
-               cola="FMNH2"
-       fi
-fi
 
+case "$colabase" in                                                                                   
+    FMN)                                                                                              
+      case "$redox" in                                                                                
+        1)  cola="FMN" ;;                                                                             
+        2)  cola="FMN-" ;;                                                                            
+        3)  cola="FMNH" ;;
+        4)  cola="FMNH-" ;;
+        5)  cola="FMNH2" ;;                                                                           
+        *)  cola="" ;;   # Optional: handle unexpected values                                         
+      esac                                                                                            
+      ;;                                                                                              
+    FAD)                                                                                              
+      case "$redox" in                                                                                
+        1)  cola="FAD" ;;                                                                             
+        2)  cola="FAD-" ;;                                                                            
+        3)  cola="FADH" ;;
+        4)  cola="FADH-" ;;
+        5)  cola="FADH2" ;;                                                                         
+        *)  cola="" ;;                                                                                
+      esac                                                                                            
+      ;;                                                                                              
+    *)                                                                                                
+      cola=""   # Optional: handle unexpected colabase                                                
+      ;;                                                                                              
+  esac
 
 # Creating a directory where the PDB will be generated
 # and copying the required files
@@ -217,22 +229,7 @@ YOE
       mkdir ESPF_charges
       cp ../Chromophore/${chromophore}.xyz ESPF_charges
 
-        case $cola in
-         "FMN" )
       cp $templatedir/ASEC/charges_$cola ESPF_charges/template_charges
-          ;;
-         "FMNdot-" )
-      cp $templatedir/ASEC/charges_$cola ESPF_charges/template_charges
-          ;;
-         "FMNH" )
-      cp $templatedir/ASEC/charges_$cola ESPF_charges/template_charges
-          ;;
-         "FMNH-" )
-      cp $templatedir/ASEC/charges_$cola ESPF_charges/template_charges
-          ;;
-         "FMNH2" )
-      cp $templatedir/ASEC/charges_$cola ESPF_charges/template_charges
-        esac
       
       cp $folder/$folder.out ESPF_charges/${Project}_ESPF.out
       ../update_infos.sh "Next_script" "fitting_ESPF.sh" ../Infos.dat 

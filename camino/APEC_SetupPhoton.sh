@@ -185,28 +185,27 @@ What oxidation state do you want to run calculations on?
 4. Anionic Hydroquinone 
 5. Neutral Hydroquinone 
 
-Enter a number.
+Enter 1, 2 or 3.
 
 "
 
 read oxidationState
-case "$oxidationState" in
-  1|2)
-    oxid=""
-    ;;
-  3|4)
-    oxid="H"
-    ;;
-  5)
-    oxid="H2"
-    ;;
-  *)
-    echo "Unknown oxidation state: $oxidationState"
-    exit 0
-    ;;
-esac
 
+if [ $oxidationState -eq 1 ] || [ $oxidationState -eq 2 ]; then
+      oxid=""
+elif [ $oxidationState -eq 3 ] || [ $oxidationState -eq 4 ]; then
+        oxid="H"
+elif [ $oxidationState -eq 5 ] ; then
+        oxid="H2"
+else
 
+echo "
+
+Enter a valid number please.
+
+"
+exit 0
+fi
 
 # Add FlavinVariant Oxidation State Template Connectivities to Final.mol2
 sed -n '/BOND/,$p' $templatedir/${flavinVariant}/${flavinVariant}${oxid}/${flavinVariant}${oxid}.mol2 >> CHRFinal.mol2

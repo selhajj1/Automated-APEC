@@ -8,6 +8,7 @@ templatedir=`grep "Template" Infos.dat | awk '{ print $2 }'`
 Step=`grep "Step" Infos.dat | awk '{ print $2 }'`
 prm=`grep "Parameters" Infos.dat | awk '{ print $2 }'`
 solvent=`grep "SolventBox" Infos.dat | awk '{ print $2 }'`
+colabase=`grep "Tail" Infos.dat | awk '{ print $2 }'`
 tmpdir=`grep "tempdir" Infos.dat | awk '{ print $2 }'`
 module load vmd
 
@@ -187,6 +188,10 @@ shell=`grep "Shell" ../../Infos.dat | awk '{ print $2 }'`
 sed -i "s|numero|$(($shell+1))|g" ASEC.f
 gfortran ASEC.f -o ASEC.x
 ./ASEC.x
+if [[ $colabase == "FAD" ]]; then
+    cp $templatedir/ASEC/FAD_tkModifier.sh .
+    ./FAD_tkModifier.sh
+fi
 mv new_coordinates_tk.xyz ${Project}_VDZP_Opt.xyz
 
 #

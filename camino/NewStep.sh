@@ -105,7 +105,7 @@ wat=`grep -c "OW  HOH" $Project.pdb`
 #
 
 $gropath/gmx pdb2gmx -f $Project.pdb -o $Project.gro -p $Project.top -ff $amber -water tip3p 2> grolog
-checkgro=`grep 'Writing coordinate file...' grolog`
+checkgro=`grep 'converted successfully' grolog`
    if [[ -z $checkgro ]]; then
       echo " An error occurred during the execution of pdb2gmx. Please look into grolog file"
       echo " No further operation performed. Aborting..."

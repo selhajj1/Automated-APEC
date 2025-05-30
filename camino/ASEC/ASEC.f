@@ -29,7 +29,7 @@ CCCCCCCCCCCCCCCC
       icontmov=1
       icont=0
       if (ifxx.gt.0) then
-         open(6,file='chargefxx0',status='old')
+         open(6,file='chargefxx',status='old')
          do i=1,ifxx
             read(6,*)line6,ifxxall(i),carga,itype(i)
          enddo

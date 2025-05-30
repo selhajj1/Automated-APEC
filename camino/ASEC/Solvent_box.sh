@@ -73,38 +73,31 @@ while [[ $fmnfad != "FMN" && $fmnfad != "FAD" ]]; do
 done
 ../../update_infos.sh "Tail" $fmnfad ../../Infos.dat
 
-fmnfad="FMN"
+#fmnfad="FMN"
 
 if [[ $fmnfad == "FMN" ]]; then
-	if [[ $option -eq 1 ]]; then
-  	 cp $templatedir/ASEC/manchester_FMN_rtp new_rtp
-	fi
-	if [[ $option -eq 2 ]]; then
-  	 cp $templatedir/ASEC/manchester_FMN-_rtp new_rtp
-	fi
-	if [[ $option -eq 3 ]]; then
-   	 cp $templatedir/ASEC/manchester_FMNH_rtp new_rtp
-	fi
-	if [[ $option -eq 4 ]]; then
-   	 cp $templatedir/ASEC/manchester_FMNH-_rtp new_rtp
-	fi
-	if [[ $option -eq 5 ]]; then
-   	 cp $templatedir/ASEC/manchester_FMNH2_rtp new_rtp
-	fi
-# else
-	# if [[ $option -eq 1 ]]; then
-   #       cp /data/PHO_WORK/sajagbe2/QMMM/LOVCalculations/FAD/2pd7/Quinone/FAD_rtp new_rtp
-	# fi
-   #      if [[ $option -eq 2 ]]; then
-   #      fi
-   #      if [[ $option -eq 3 ]]; then
-   #      fi
-   #      if [[ $option -eq 4 ]]; then
-   #      fi
-   #      if [[ $option -eq 5 ]]; then
-   #      fi	  
- 
-
+    case $option in
+        1) src="$templatedir/ASEC/RESP_FMN_rtp" ;;
+        2) src="$templatedir/ASEC/RESP_FMN-_rtp" ;;
+        3) src="$templatedir/ASEC/RESP_FMNH_rtp" ;;
+        4) src="$templatedir/ASEC/RESP_FMNH-_rtp" ;;
+        5) src="$templatedir/ASEC/RESP_FMNH2_rtp" ;;
+        *) echo "Invalid option for FMN"; exit 1 ;;
+    esac
+    cp "$src" new_rtp
+elif [[ $fmnfad == "FAD" ]]; then
+    case $option in
+        1) src="$templatedir/ASEC/SOA_FAD_rtp" ;;
+        2) src="$templatedir/ASEC/SOA_FAD-_rtp" ;;
+        3) src="$templatedir/ASEC/SOA_FADH_rtp" ;;
+        4) src="$templatedir/ASEC/SOA_FADH-_rtp" ;;
+        5) src="$templatedir/ASEC/SOA_FADH2_rtp" ;;
+        *) echo "Invalid option for FAD"; exit 1 ;;
+    esac
+    cp "$src" new_rtp
+else
+    echo "Invalid fmnfad value: $fmnfad"
+    exit 1
 fi
 
 #cp ../../ESPF_charges/new_rtp .

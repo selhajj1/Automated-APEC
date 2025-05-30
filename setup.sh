@@ -15,7 +15,7 @@ git clone https://github.com/selhajj1/Automated-APEC.git || { echo "Failed to cl
 echo "step 1 done"
 
 # Step 2: Loading the needed python version
-module load python/3.8.9 || { echo "Failed to load Python module"; exit 1; }
+module load python/3.13.3 || { echo "Failed to load Python module"; exit 1; }
 echo "step 2 done"
 
 python3 -m pip install virtualenv

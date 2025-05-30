@@ -8,6 +8,8 @@ templatedir=`grep "Template" Infos.dat | awk '{ print $2 }'`
 Step=`grep "Step" Infos.dat | awk '{ print $2 }'`
 prm=`grep "Parameters" Infos.dat | awk '{ print $2 }'`
 solvent=`grep "SolventBox" Infos.dat | awk '{ print $2 }'`
+colabase=`grep "Tail" ../Infos.dat | awk '{ print $2 }'`
+
 
 cp MD_ASEC/list_tk.dat calculations/${Project}_6-31G
 cp MD_ASEC/ASEC_tk.xyz calculations/${Project}_6-31G
@@ -26,6 +28,11 @@ else
 fi
 gfortran ASEC.f -o ASEC.x
 ./ASEC.x
+
+if [[ $colabase == "FAD" ]]; then
+    cp $templatedir/ASEC/FAD_tkModifier.sh .
+    ./FAD_tkModifier.sh
+fi
 mv new_coordinates_tk.xyz ${Project}_6-31G.xyz
 
 #if [ $Step -ne "1" ]; then

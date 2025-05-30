@@ -57,7 +57,7 @@ CCCCCCCCCCCCCCCC
       enddo
 
       if (ifxx.gt.0) then
-         open(9,file='chargefxx0',status='old')
+         open(9,file='chargefxx',status='old')
          do i=1,ifxx
             read(9,*)line6,iatom,tempcharge,itype(i)
             ifxxall(i)=iatom

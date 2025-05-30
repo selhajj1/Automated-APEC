@@ -408,6 +408,21 @@ N*  CT  HC           1   120.000    292.880
 ;CA  N2  H            1   120.000    418.400 ; new99
 CA  NC  H            1   120.000    418.400 ; new99
 
+
+;########################################################################################
+;##                          FAD (not the tail) (SOA)                               ##
+;########################################################################################
+C  CM  N*            1   130.800    535.550 ; ACPypeAmberGenerated (2/2024)
+;CM N*  CB           1   109.950    584.920 ; ACPypeAmberGenerated (2/2024)
+N* CB  CA            1   119.720    581.580 ; ACPypeAmberGenerated (2/2024)
+;CA CB  N*           1   119.720    581.580 ; ACPypeAmberGenerated (2/2024)
+CB N*  CM            1   109.950    584.920 ; ACPypeAmberGenerated (2/2024)
+N* CM  N*            1   128.740    584.090 ; ACPypeAmberGenerated (2/2024)
+
+
+
+
+
 [ dihedraltypes ]
 ;i  j   k  l	 func      phase      kd      pn
 CA  CA  CA  OH       4      180.00     4.60240     2 	; new99

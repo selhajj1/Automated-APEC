@@ -44,7 +44,7 @@ echo ""
 #
 module load openmolcas/24.06
 module load gromacs/2024.4-cpu
-camino="/data/PHO_WORK/selhajj1/QMMM/quinone-apec-Jan16/camino"
+camino="/data/PHO_WORK/selhajj1/QMMM/Spr25_QMMM/automated-apec/camino"
 CURRENT_DIR=$(pwd)
 cp $camino/Infos.dat .
 
